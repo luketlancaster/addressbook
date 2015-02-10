@@ -4,4 +4,4 @@
 
 [![Code Climate](https://codeclimate.com/github/luketlancaster/addressbook/badges/gpa.svg)](https://codeclimate.com/github/luketlancaster/addressbook)
 
-[![Test Coverage](https://codeclimate.com/github/luketlancaster/addressbook/badges/coverage.svg)](https://codeclimate.com/github/luketlancaster/addressbook)
+[![Coverage Status](https://coveralls.io/repos/luketlancaster/addressbook/badge.svg)](https://coveralls.io/r/luketlancaster/addressbook)
