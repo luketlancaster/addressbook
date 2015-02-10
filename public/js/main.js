@@ -16,7 +16,7 @@ function addRowsToTable(contact) {
   $row.append('<td>' + contact.phoneNumber + '</td>');
   $row.append('<td>' + contact.email + '</td>');
   $row.append('<td>' + contact.twitter + '</td>');
-  $row.append('<td>' + contact.photoUrl + '</td>');
+  $row.append('<td><img src=' + contact.photoUrl + '></td>');
 
   $('tbody').append($row);
 
@@ -29,7 +29,11 @@ $('#newContact').click(showForm);
 
 
 function showForm() {
-  $('.contact-info-box').css('visibility', 'visible');
+  $('.contact-info-box').css('display', 'block');
+}
+
+function hideForm() {
+  $('.contact-info-box').css('display', 'none');
 }
 
 function sendData(evt) {
@@ -52,7 +56,7 @@ function sendData(evt) {
   var data = JSON.stringify(contact);
 
   addRowsToTable(contact);
-
+  hideForm();
 }
 
 

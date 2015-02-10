@@ -2,6 +2,10 @@
   text-align: center;
 }
 
-.contact-info-box {
-  visibility: hidden;
+.contact-table {
+  width: auto;
+}
+
+img {
+  width: 50px;
 }
