@@ -6,6 +6,14 @@
   width: auto;
 }
 
+.hidden {
+  display: none;
+}
+
 img {
   width: 50px;
+}
+
+th, td {
+  width: 10%;
 }

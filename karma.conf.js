@@ -15,12 +15,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'public/js/**/*.js',
-      'test/spec/**/*.test.js',
       'bower_components/foundation/css/normalize.css',
       'bower_components/foundation/css/foundation.css',
       'bower_components/jquery/dist/jquery.min.js',
-      'bower_components/lodash/lodash.min.js'
+      'bower_components/lodash/lodash.min.js',
+      'public/js/**/*.js',
+      'test/spec/**/*.test.js'
     ],
 
 
