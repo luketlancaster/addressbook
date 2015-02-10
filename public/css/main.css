@@ -1,0 +1,7 @@
+.top-data, .contact-info-box {
+  text-align: center;
+}
+
+.contact-info-box {
+  visibility: hidden;
+}

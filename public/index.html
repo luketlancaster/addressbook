@@ -3,10 +3,30 @@
   <head>
     <link rel="stylesheet" href="../bower_components/foundation/css/normalize.css">
     <link rel="stylesheet" href="../bower_components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <h1>Contact Info</h1>
+    <div class="row">
+      <div class="small-12 clumns top-data">
+        <h1>Contact Info</h1>
+        <button id="newContact">Create New Contact</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-4 small-offset-4 columns contact-info-box">
+        <form>
+          <input type="text" id="firstName" placeholder="First Name" required="required">
+          <input type="text" id="lastName" placeholder="Last Name" required="required">
+          <input type="text" id="phoneNumber" placeholder="Phone Number" required="required">
+          <input type="text" id="email" placeholder="E-mail Address">
+          <input type="text" id="twitter" value="@" placeholder="Twitter Handle">
+          <input type="text" id="photoUrl" placeholder="Photo URL">
+          <button type="submit" id="addContact">Add</button>
+        </form>
+      </div>
+    </div>
     <table>
+      <thead></thead><tbody></tbody>
     </table>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/foundation/js/foundation.min.js"></script>
