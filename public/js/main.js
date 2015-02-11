@@ -25,6 +25,14 @@ if (fb.getAuth()) {
   });
 }
 
+//logout function
+
+$('#logout').click(function() {
+  fb.unauth();
+  location.reload(true);
+});
+
+
 //login function for returning users not already logged in
 
 $('.login').on('click', '#register', function(evt) {
