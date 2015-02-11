@@ -33,7 +33,28 @@ $('#logout').click(function() {
 });
 
 
-//login function for returning users not already logged in
+//login function for returning users
+
+$('.login').on('click', '#login', function(evt) {
+  evt.preventDefault();
+
+  var $loginForm = $(evt.target).closest('form'),
+      email      = $loginForm.find('[type="email"]').val(),
+      password   = $loginForm.find('[type="password"]').val(),
+      loginInfo  = {email: email, password: password};
+
+  fb.authWithPassword(loginInfo, function(err, auth) {
+    if(err) {
+      $('.error').text(err);
+    } else {
+      location.reload(true);
+    }
+  });
+});
+
+
+
+//login function for new users
 
 $('.login').on('click', '#register', function(evt) {
   evt.preventDefault();
