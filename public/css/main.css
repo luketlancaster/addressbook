@@ -15,7 +15,12 @@
 }
 
 img {
-  width: 50px;
+  width: 100px;
+}
+
+img:hover {
+  width: 200px;
+  box-shadow: 0 0 10px #ccc;
 }
 
 th, td {
