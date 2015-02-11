@@ -10,6 +10,10 @@
   display: none;
 }
 
+.remove {
+  margin: 10px;
+}
+
 img {
   width: 50px;
 }

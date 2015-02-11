@@ -98,7 +98,7 @@ function addRowsOnLoad(uuid, contact) {
   $row.append('<td>' + contact.phoneNumber + '</td>');
   $row.append('<td>' + contact.email + '</td>');
   $row.append('<td>' + contact.twitter + '</td>');
-  $row.append('<td><img src=' + contact.photoUrl + '></td>');
+  $row.append('<td><a href = ' + contact.photoUrl + '><img src=' + contact.photoUrl + '></a></td>');
   $row.append('<button class="remove">' + 'Remove?' + '</button>');
 
   $row.attr('data-uuid', uuid);
@@ -116,7 +116,7 @@ function addRowsToTable(contact) {
   $row.append('<td>' + contact.phoneNumber + '</td>');
   $row.append('<td>' + contact.email + '</td>');
   $row.append('<td>' + contact.twitter + '</td>');
-  $row.append('<td><img src=' + contact.photoUrl + '></td>');
+  $row.append('<td><a href = ' + contact.photoUrl + '><img src=' + contact.photoUrl + '></a></td>');
   $row.append('<button class="remove">' + 'Remove?' + '</button>');
 
   $('tbody').append($row);
