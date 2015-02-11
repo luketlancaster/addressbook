@@ -25,7 +25,42 @@ if (fb.getAuth()) {
   });
 }
 
+//login function for returning users not already logged in
+
+$('.login').on('click', '#register', function(evt) {
+  evt.preventDefault();
+  var $loginForm = $(evt.target).closest('form'),
+      email      = $loginForm.find('[type="email"]').val(),
+      password   = $loginForm.find('[type="password"]').val(),
+      loginInfo  = {email: email, password: password};
+
+  registerAndLogin(loginInfo, function(err, auth) {
+    if(err) {
+      $('.error').text(err);
+    } else {
+      location.reload(true);
+    }
+  });
+});
+
+function registerAndLogin(userObj, cb) {
+  fb.createUser(userObj, function(err) {
+    if (!err) {
+      fb.authWithPassword(userObj, function(err, auth) {
+        if (!err) {
+          cb(null, auth);
+        } else {
+          cb(err);
+        }
+      });
+    } else {
+      cb(err);
+    }
+  });
+}
+
 //Next two for adding rows, either on load or for new data
+
 function addRowsOnLoad(uuid, contact) {
   var $row = $('<tr></tr>');
 
@@ -70,7 +105,7 @@ $('#table').on('click', '.remove', function(evt) {
   var $tr = $(this).closest('tr'),
       uuid = $tr.data('uuid');
   $tr.remove();
-  var url = 'https://c8addressbook.firebaseio.com/contacts/' + uuid + '.json';
+  var url = usersFbUrl + '/contacts/' + uuid + '.json';
   $.ajax(url, {type:'DELETE'});
 });
 
@@ -102,7 +137,8 @@ function sendData(evt) {
                   photoUrl: photoUrl };
 
   var jsonifiedData = JSON.stringify(contact),
-      $tr = $('tr');
+      $tr = $('tr'),
+      url = usersFbUrl + '/contacts.json';
 
   $('#firstName').val('');
   $('#lastName').val('');
@@ -113,7 +149,7 @@ function sendData(evt) {
 
   hideForm();
 
-  $.post(firebaseUrl, jsonifiedData, function(res) {
+  $.post(url, jsonifiedData, function(res) {
     addRowsToTable(contact);
     addUUID(res);
   });
