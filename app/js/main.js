@@ -1,6 +1,11 @@
-/* jshint jquery: true */
+/* jshint node: true */
 
 'use strict';
+
+//var $        = require('jquery'),
+    //_        = require('lodash'),
+    //Firebase = require('firebase');
+
 var FIREBASE_URL = 'https://c8addressbook.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL),
     usersFbUrl;
