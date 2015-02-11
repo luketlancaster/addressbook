@@ -2,17 +2,19 @@
 
 'use strict';
 var firebaseUrl = 'https://c8addressbook.firebaseio.com/contacts.json';
-
+//Used for testing
 function hello() {
   return 'world';
 }
 
+//Get the saved data from firebase and add rows with
 $.get(firebaseUrl, function(res) {
   Object.keys(res).forEach(function(uuid) {
     addRowsOnLoad(uuid, res[uuid]);
   });
 });
 
+//Next two for adding rows, either on load or for new data
 function addRowsOnLoad(uuid, contact) {
   var $row = $('<tr></tr>');
 
@@ -48,9 +50,18 @@ function addRowsToTable(contact) {
 }
 
 
+//click events
 $('#addContact').click(sendData);
+
 $('#newContact').click(showForm);
 
+$('#table').on('click', '.remove', function(evt) {
+  var $tr = $(this).closest('tr'),
+      uuid = $tr.data('uuid');
+  $tr.remove();
+  var url = 'https://c8addressbook.firebaseio.com/contacts/' + uuid + '.json';
+  $.ajax(url, {type:'DELETE'});
+});
 
 function showForm() {
   $('.contact-info-box').toggleClass('hidden');
@@ -60,6 +71,8 @@ function hideForm() {
   $('.contact-info-box').toggleClass('hidden');
 }
 
+
+//Creating object from form and sending to firebase
 function sendData(evt) {
   evt.preventDefault();
 
@@ -98,14 +111,3 @@ function sendData(evt) {
 function addUUID(res) {
   $('tr').last('tr').attr('data-uuid', res.name);
 }
-
-
-
-$('#table').on('click', '.remove', function(evt) {
-  var $tr = $(this).closest('tr'),
-      uuid = $tr.data('uuid');
-  console.log(uuid);
-  $tr.remove();
-  var url = 'https://c8addressbook.firebaseio.com/contacts/' + uuid + '.json';
-  $.ajax(url, {type:'DELETE'});
-});
