@@ -7,11 +7,11 @@ describe('test suite', function () {
   });
 });
 
-describe('hello', function() {
-  it('should return world', function() {
-    hello().should.equal('world');
-  });
-});
+//describe('hello', function() {
+  //it('should return world', function() {
+    //hello().should.equal('world');
+  //});
+//});
 
 //describe('addRowsToTable', function() {
   //before(function() {
