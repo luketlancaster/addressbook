@@ -8,6 +8,7 @@
 
 var FIREBASE_URL = 'https://c8addressbook.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL),
+    token,
     usersFbUrl;
 
 //Used for testing
@@ -22,8 +23,9 @@ if (fb.getAuth()) {
   $('.app').toggleClass('hidden');
 
   usersFbUrl = FIREBASE_URL + '/users/' + fb.getAuth().uid + '/data';
+  token      = fb.getAuth().token;
 
-  $.get(usersFbUrl + '/contacts.json', function(res) {
+  $.get(usersFbUrl + '/contacts.json?auth=' + token, function(res) {
     Object.keys(res).forEach(function(uuid) {
       addRowsOnLoad(uuid, res[uuid]);
     });
@@ -139,7 +141,7 @@ $('#table').on('click', '.remove', function(evt) {
   var $tr = $(this).closest('tr'),
       uuid = $tr.data('uuid');
   $tr.remove();
-  var url = usersFbUrl + '/contacts/' + uuid + '.json';
+  var url = usersFbUrl + '/contacts/' + uuid + '.json?auth=';
   $.ajax(url, {type:'DELETE'});
 });
 
@@ -172,7 +174,7 @@ function sendData(evt) {
 
   var jsonifiedData = JSON.stringify(contact),
       $tr = $('tr'),
-      url = usersFbUrl + '/contacts.json';
+      url = usersFbUrl + '/contacts.json?auth=' + token;
 
   $('#firstName').val('');
   $('#lastName').val('');
