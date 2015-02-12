@@ -9,7 +9,7 @@
 var FIREBASE_URL = 'https://c8addressbook.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL),
     token,
-    usersFbUrl;
+    usersFb;
 
 //Used for testing
 function hello() {
@@ -22,14 +22,21 @@ if (fb.getAuth()) {
   $('.login').remove();
   $('.app').toggleClass('hidden');
 
-  usersFbUrl = FIREBASE_URL + '/users/' + fb.getAuth().uid + '/data';
-  token      = fb.getAuth().token;
+  usersFb = new Firebase(FIREBASE_URL + '/users/' + fb.getAuth().uid + '/data/contacts');
 
-  $.get(usersFbUrl + '/contacts.json?auth=' + token, function(res) {
-    Object.keys(res).forEach(function(uuid) {
-      addRowsOnLoad(uuid, res[uuid]);
+  usersFb.once('value', function(res) {
+    var data = res.val();
+    Object.keys(data).forEach(function(uuid) {
+      addRowsOnLoad(uuid, data[uuid]);
     });
   });
+  //token      = fb.getAuth().token;
+
+  //$.get(usersFbUrl + '/contacts.json?auth=' + token, function(res) {
+    //Object.keys(res).forEach(function(uuid) {
+      //addRowsOnLoad(uuid, res[uuid]);
+    //});
+  //});
 }
 
 //logout function
@@ -137,6 +144,7 @@ $('#addContact').click(sendData);
 
 $('#newContact').click(showForm);
 
+//Delete from Firebase (move to it's own function at some point
 $('#table').on('click', '.remove', function(evt) {
   var $tr = $(this).closest('tr'),
       uuid = $tr.data('uuid');
