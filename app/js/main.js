@@ -8,7 +8,6 @@
 
 var FIREBASE_URL = 'https://c8addressbook.firebaseio.com',
     fb           = new Firebase(FIREBASE_URL),
-    token,
     usersFb;
 
 //Used for testing
@@ -22,7 +21,7 @@ if (fb.getAuth()) {
   $('.login').remove();
   $('.app').toggleClass('hidden');
 
-  usersFb = new Firebase(FIREBASE_URL + '/users/' + fb.getAuth().uid + '/data/contacts');
+  usersFb = fb.child('/users/' + fb.getAuth().uid + '/data/contacts');
 
   usersFb.once('value', function(res) {
     var data = res.val();
@@ -30,13 +29,6 @@ if (fb.getAuth()) {
       addRowsOnLoad(uuid, data[uuid]);
     });
   });
-  //token      = fb.getAuth().token;
-
-  //$.get(usersFbUrl + '/contacts.json?auth=' + token, function(res) {
-    //Object.keys(res).forEach(function(uuid) {
-      //addRowsOnLoad(uuid, res[uuid]);
-    //});
-  //});
 }
 
 //logout function
@@ -202,5 +194,3 @@ function sendData(evt) {
 function addUUID(res) {
   $('tr').last('tr').attr('data-uuid', res.name);
 }
-
-
