@@ -1,6 +1,6 @@
 {
   "firebase": "c8frands",
-  "public": ".",
+  "public": "public",
   "ignore": [
     "firebase.json",
     "**/.*",
