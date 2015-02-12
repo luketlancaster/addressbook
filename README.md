@@ -11,5 +11,3 @@ https://c8frands.firebaseapp.com/
 
 Pi Hosting
 http://www.luketlancaster.com/addressbook/public/
-
-![Pi Files](https://img.shields.io/badge/pi-operational-047F1C.svg)
